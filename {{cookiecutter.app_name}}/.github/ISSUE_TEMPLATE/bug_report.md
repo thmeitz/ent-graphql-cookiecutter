@@ -7,7 +7,7 @@ labels: 'status: needs triage'
 <!-- Provide a general summary of the issue in the Title above -->
 
 <!--
-  Thank you very much for contributing to Ent by creating an issue! ❤️
+  Thank you very much for contributing to {{cookiecutter.app_name}} by creating an issue! ❤️
   To avoid duplicate issues we ask you to check off the following list.
 -->
 
