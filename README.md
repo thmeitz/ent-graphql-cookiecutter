@@ -15,7 +15,7 @@ This is not production ready and many things do not yet work as they should. As 
 - uses [zap](https://github.com/uber-go/zap) logger
 - injects build time and git hash at build time
 
-### Datbase Migrations
+### Database Migrations
 - uses go-migrate Ariga Atlas integration
 
 ## Optional Integrations
