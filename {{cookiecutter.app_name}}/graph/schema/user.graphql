@@ -1,0 +1,46 @@
+"""
+create user input
+"""
+input CreateUserInput {
+  name: String!
+}
+
+"""
+update user input
+"""
+input UpdateUserInput {
+  name: String
+}
+
+extend type Query {
+  """
+  get all users
+  """
+  users(
+    after: Cursor
+    first: Int
+    before: Cursor
+    last: Int
+    orderBy: UserOrder
+    where: UserWhereInput
+  ): UserConnection
+}
+
+extend type Mutation {
+  """
+  create a User
+  """
+  createUser(input: CreateUserInput!): User!
+
+  """
+  update a User by Id
+  """
+  updateUser(id: ID!, input: UpdateUserInput!): User!
+
+  """
+  delete a User by Id
+
+  be careful - that destroys the User and is not recoverable
+  """
+  deleteUser(id: ID!): User!
+}

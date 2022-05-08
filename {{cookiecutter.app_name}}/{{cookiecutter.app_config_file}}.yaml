@@ -1,0 +1,9 @@
+api:
+  port: 8080
+database:
+  type: mysql
+  user: root
+  password: my-super-safe-password
+  name: mydatabase
+  host: localhost
+  port: 3306

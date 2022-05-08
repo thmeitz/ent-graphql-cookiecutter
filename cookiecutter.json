@@ -1,0 +1,20 @@
+{
+  "_copy_without_render": [
+    "*/template/mutation_input.tmpl"
+  ],
+  "full_name": "Thomas Meitz",
+  "github_username": "thmeitz",
+  "app_name": "mygolangproject",
+  "app_config_file": "my-config",
+  "project_short_description": "A Golang project.",
+  "docker_hub_username": "thmeitz",
+  "docker_image": "thmeitz/alpine-base-image:latest",
+  "docker_build_image": "thmeitz/alpine-golang-buildimage",
+  "docker_build_image_version": [
+    "1.13",
+    "1.12.9",
+    "1.11.9"
+  ],
+  "use_docker": "y",
+  "use_git": "y"
+}

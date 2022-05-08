@@ -1,0 +1,19 @@
+"""
+Maps a Time GraphQL scalar to a Go time.Time struct.
+"""
+scalar Time
+
+"""
+Maps a Date GraphQL scalar to a Go time.Time struct.
+"""
+scalar Date
+
+"""
+Maps a Int32 GraphQL scalar to a Go int32.
+"""
+scalar Int32
+
+"""
+Maps a Int64 GraphQL scalar to a Go int64.
+"""
+scalar Int64
