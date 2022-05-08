@@ -43,7 +43,7 @@ func migrateUp(cmd *cobra.Command, args []string) {
 	}
 	db, err := sql.Open(Conf.Database.Type, dsn)
 	if err != nil {
-		logger.Fatal("upmigrate", zap.Error(err))
+		logger.Fatal("migrate-up", zap.Error(err))
 	}
 	defer db.Close()
 
@@ -66,7 +66,7 @@ func migrateUp(cmd *cobra.Command, args []string) {
 		migrationsDirectory,
 		Conf.Database.Type, driver)
 	if err != nil {
-		logger.Error("migrate-up error", zap.Error(err))
+		logger.Error("migrate-up", zap.Error(err))
 	}
 	err = m.Up()
 	if err != nil {
