@@ -17,20 +17,20 @@ import (
 	"go.uber.org/zap"
 )
 
-// migrateDownCmd represents the migrateDown command
-var migrateDownCmd = &cobra.Command{
+// migrateStepCmd represents the migrate command
+var migrateStepCmd = &cobra.Command{
 	Use:   "migrate",
 	Short: "migrate the database stepwise up or down",
 	Run:   migrateUpDown,
 }
 
-var migrateDownDir string
+var migrateStepDir string
 var migrateSteps int
 
 func init() {
-	rootCmd.AddCommand(migrateDownCmd)
-	mflags := migrateDownCmd.Flags()
-	mflags.StringVarP(&migrateDownDir, "migrations", "m", "", "migrations directory")
+	rootCmd.AddCommand(migrateStepCmd)
+	mflags := migrateStepCmd.Flags()
+	mflags.StringVarP(&migrateStepDir, "migrations", "m", "", "migrations directory")
 	mflags.IntVarP(&migrateSteps, "steps", "s", 0, "migration steps -1 (migrate 1 step down) +1 (migrate 1 step up)")
 	cobra.MarkFlagRequired(mflags, "migrations")
 	cobra.MarkFlagRequired(mflags, "steps")
@@ -46,7 +46,7 @@ func migrateUpDown(cmd *cobra.Command, args []string) {
 	}
 	db, err := sql.Open(Conf.Database.Type, dsn)
 	if err != nil {
-		logger.Fatal("downmigrate", zap.Error(err))
+		logger.Fatal("migrate", zap.Error(err))
 	}
 	defer db.Close()
 
@@ -59,21 +59,21 @@ func migrateUpDown(cmd *cobra.Command, args []string) {
 		driver, err = sqlite3.WithInstance(db, &sqlite3.Config{})
 	}
 
-	logger.Info("migrate-down", zap.String("dbtype", Conf.Database.Type))
+	logger.Info("migrate", zap.String("dbtype", Conf.Database.Type))
 
-	migrationsDirectory := fmt.Sprintf("file://%v", migrateDownDir)
+	migrationsDirectory := fmt.Sprintf("file://%v", migrateStepDir)
 
-	logger.Info("migrate-down", zap.Any("migrations", migrationsDirectory))
+	logger.Info("migrate", zap.Any("migrations", migrationsDirectory))
 
 	m, err := migrate.NewWithDatabaseInstance(
 		migrationsDirectory,
 		Conf.Database.Type, driver)
 	if err != nil {
-		logger.Error("migrate-down", zap.Error(err))
+		logger.Error("migrate", zap.Error(err))
 	}
 
 	err = m.Steps(migrateSteps)
 	if err != nil {
-		logger.Error("migrate-down", zap.Error(err))
+		logger.Error("migrate", zap.Error(err))
 	}
 }

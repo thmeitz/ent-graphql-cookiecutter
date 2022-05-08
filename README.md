@@ -14,8 +14,11 @@ This is not production ready and many things do not yet work as they should. As 
 - uses [gin-gonic](https://github.com/gin-gonic/gin)
 - uses [zap](https://github.com/uber-go/zap) logger
 - injects build time and git hash at build time
+- generates Relay compatible GraphQL server
+- generates cobra cli docs in docs directory 
 
 ### Database Migrations
+
 - uses go-migrate Ariga Atlas integration
 
 ## Optional Integrations
